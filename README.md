@@ -23,7 +23,7 @@ After that, open http://localhost:3000 on your browser to see the app on the dev
 
 ## Running on prod mode
 
-Open a new terminal window,, `ssh` into the teracy-dev VM to execute the following commands:
+Open a new terminal window and execute the following commands:
 
 ```
 $ cd hello-world-nodejs
