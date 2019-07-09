@@ -1,6 +1,6 @@
-# hello-world-nodejs
+# hello-world-nodejs-docker
 
-This is a basic example for a hello world nodejs app with Docker workflow running on teracy-dev v0.5.0
+This is a basic example for a hello world nodejs app with Docker workflow 
 
 
 ## Getting Started
