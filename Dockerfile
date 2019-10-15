@@ -1,13 +1,24 @@
-FROM node:6.9
+FROM mhart/alpine-node:8.11.1
 
-ENV APP=/opt/app NODE_ENV=production
+RUN npm config set unsafe-perm true
+RUN npm install --global yarn
+RUN npm config set unsafe-perm false
 
-RUN mkdir -p $APP
+RUN apk add --no-cache python git make gcc g++ bash curl
 
-ADD . $APP/
+ADD package.json /tmp/package.json
+ADD yarn.lock /tmp/yarn.lock
+RUN cd /tmp && yarn install
+RUN mkdir -p /app && cp -a /tmp/node_modules /app/
 
-WORKDIR $APP
+RUN apk del python git make gcc g++
 
-RUN npm install --production
+WORKDIR /app
+ADD . ./
+RUN yarn run build
 
-CMD npm run start
+RUN tar -cf build.tar build
+
+COPY . .
+
+EXPOSE 3000
